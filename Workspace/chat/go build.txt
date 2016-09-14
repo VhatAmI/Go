@@ -5,3 +5,6 @@ On windows machine creates chat.exe if ran in directory
 
 go build -o chat 
 creates go binary that can be ran in unix/linux/mac enviroments but not windows if ran in directory 
+
+go get github.com/gorilla/websocket
+Needs to be ran locally since I am not going to rehost the package code for this package that the chat application uses
