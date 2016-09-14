@@ -1,5 +1,7 @@
 commands : 
 
 go build
+On windows machine creates chat.exe if ran in directory
 
 go build -o chat 
+creates go binary that can be ran in unix/linux/mac enviroments but not windows if ran in directory 
