@@ -10,6 +10,7 @@
 				Lets chat! 
 				<ul id="messages"></ul>
 				<form id="chatbox">
+				{{.UserData.name}}:<br/>
 				<textarea></textarea>
 				<input type="submit" value="Send" />
 				</form>
@@ -17,6 +18,7 @@
 				</script>
 				<script>
 				$(function(){
+				
 				var socket = null;
 				var msgBox = $("#chatbox textarea");
 				var messages = $("#messages");
@@ -26,7 +28,7 @@
 					alert("No socket connection")
 					return false;
 					}
-					socket.send(msgBox.val());
+					socket.send(JSON.stringify({"Message": msgBox.val()}));
 					msgBox.val("");
 					return false;
 				});
@@ -38,7 +40,13 @@
 				alert("Connection closed")
 				}
 				socket.onmessage = function(e) {
-				messages.append($("<li>").text(e.data));
+				var msg = eval("("+e.data+")");
+				messages.append(
+					$("<li>").append(
+						$("<strong>").text(msg.Name + ": "),
+						$("<span>").text(msg.Message)
+						)
+					);
 				}
 				}
 				});
