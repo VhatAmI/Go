@@ -1,0 +1,16 @@
+commands : 
+
+Needs to be ran locally :
+go get github.com/stretchr/gomniauth
+go get github.com/clbanning/x2j
+go get github.com/ugorji/go/codec
+go get github.com/gorilla/websocket
+
+go build
+On windows machine creates chat.exe
+
+go build -o chat 
+creates go binary that can be ran in unix/linux/mac 
+
+chat.exe -addr=":3000"
+Address can be set to IP:PORT as well, running chat.exe by itself defaults to 8080 port on local host
