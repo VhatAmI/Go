@@ -31,7 +31,7 @@
 					return false;
 				});
 				if (!window["WebSocket"]) {
-				alert("Broweser doesnt support websockets")
+				alert("Browser doesnt support websockets")
 				} else {
 				socket = new WebSocket("ws://{{.Host}}/room");
 				socket.onclose = function() {
