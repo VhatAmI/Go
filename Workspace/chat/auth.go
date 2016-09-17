@@ -37,7 +37,16 @@ func loginHandler(w http.ResponseWriter, r *http.Request) {
 	provider := segs[3]
 	switch action {
 	case "login":
-		log.Println("Handle login for ", provider)
+		provider, err := gomniauth.Provider(provider)
+		if err != nil {
+		log.Fatalln("Error authenticating with", provider, "-", err)
+		}
+		loginURL, err := provider.GetBeginAuthURL(nil,nil)
+		if err != nil {
+		  log.Fatalln("Error when trying to GetBeginAuthURL for ", provider,"-", err)
+		}
+		w.Header.Set("Location", loginUrl)
+		w.WriteHeader(http.StatusTemporaryRedirect)
 	default:
 		w.WriteHeader(http.StatusNotFound)
 		fmt.Fprintf(w, "Auth action %s not supported", action)
