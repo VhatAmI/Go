@@ -1,0 +1,8 @@
+local prints GOG
+
+global prints GOO
+
+function call prints GOG
+
+
+
