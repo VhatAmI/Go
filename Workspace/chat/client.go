@@ -6,8 +6,8 @@ import (
 )
 
 type client struct {
-	socket *websocket.Conn	
-	send chan *message	
+	socket *websocket.Conn
+	send chan *message
 	room *room
 	userData map[string]interface{}
 }
@@ -22,8 +22,11 @@ func (c *client) read() {
 		}
 		msg.When = time.Now()
 		msg.Name = c.userData["name"].(string)
-		c.room.forward <- msg	
-	}	
+		if avatarUrl,  ok := c.userData["avatar_url"]; ok {
+			msg.AvatarURL = avatarUrl.(string)
+		}
+		c.room.forward <- msg
+	}
 }
 
 func (c *client) write() {
